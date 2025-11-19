@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>InvestWise</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/papaparse@5.5.3/papaparse.min.js"></script>
+  <script src="script.js"></script>
+</head>
+<body>
+  <header>
+    <div>
+      <img src="/asset/logo.png">
+      <h2>InvestWise</h2>
+    </div>
+    <nav>
+      <ul>
+        <li><a href="#">Home</a></li>
+        <li><a href="#">Recommendation</a></li>
+        <li><a href="#">Article</a></li>
+        <li><div class="profile">
+            <img src="/asset/account.png" alt="Profile">
+        </div></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <section id="hero-section">
+      <div>
+        <h1>Welcome to InvestWise</h1>
+        <p>The future of decision support for financial investment.</p>
+        <p>Use the SMART Method to invest with confidences.</p>
+      </div>
+      <div>
+        <div class="btn-hero">
+          Get To Know SMART Method
+        </div>
+      </div>
+    </section>
+
+    <section class="investment-section">
+      <h2>Type of Investment</h2>
+
+      <div class="container-card">
+        <div class="card">
+          <img src="/asset/investment.jpg" alt="Stocks">
+          <h3>Stocks</h3>
+          <p>Invest in company shares for potential growth and dividends.</p>
+        </div>
+
+        <div class="card">
+          <img src="/asset/investment.jpg" alt="Bonds">
+          <h3>Bonds</h3>
+          <p>Earn stable returns through low-risk goverment or corporate bonds.</p>
+        </div>
+        <div class="card">
+          <img src="/asset/investment.jpg" alt="Real Estate">
+          <h3>Real Estaste</h3>
+          <p>Build long-term health wealth with property investments.</p>
+        </div>
+        <div class="card">
+          <img src="/asset/investment.jpg" alt="Mutual Funds">
+          <h3>Mutual Funds</h3>
+          <p>Diversify your portfolio with expert-manager funds.</p>
+        </div>
+        <div class="card">
+          <img src="/asset/investment.jpg" alt="Cryptocurrency">
+          <h3>Cryptocurrency</h3>
+          <p>Explore digital asssets for high-risk, high-reward opportunities.</p>
+        </div>
+      </div>
+    </section>
+    
+    <section class="chart-section">
+      <h2>My Portfolio Distribution</h2>
+      <div class="chart-container">
+        <canvas id="myCanvas"></canvas>
+      </div>
+    </section>
+  </main>
+  <footer>
+    <h3>Empowering smarter financial decisions through the SMART Method</h3>
+    <p>Copyright @2025 by valeris-void</p>
+    <p>Web Development Series GenerationGirl Tangerang</p>
+  </footer>
+</body>
+</html>

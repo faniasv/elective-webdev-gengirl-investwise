@@ -1,0 +1,200 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Poppins';
+}
+
+header {
+  padding: 16px 32px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 2px solid #d9d9d9;
+  background-color: #fff;
+}
+
+header div {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 24px;
+}
+
+header div h2 {
+  font-size: 1.2rem;
+  color: #49380B;
+  font-weight: 600;
+}
+
+header img {
+  width: 48px;
+  height: 48px;
+}
+
+nav ul {
+  display: flex;
+  flex-direction: row;
+  justify-content: end;
+  gap: 16px;
+}
+
+nav ul li {
+  list-style: none;
+}
+
+.profile img {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+a {
+  text-decoration: none;
+  color: #3d8d7a;
+  font-weight: 500;
+  font-size: 0.95rem;
+}
+
+a:hover {
+  text-decoration: underline !important;
+}
+
+#hero-section {
+  display: flex;
+  margin: 0 32px;
+  height: 350px;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-evenly;
+  padding: 60px 80px;
+  background-color: #fafcf9;
+}
+
+#hero-section div h1{
+  font-size: 2rem;
+  font-weight: 800;
+  color: #2D6A4F;
+  margin-bottom: 20px;
+}
+
+#hero-section div p {
+  color: #2D6A4F;
+  font-size: 1.05rem;
+  line-height: 1.2;
+  margin-top: 16px;
+  font-weight: 500;
+}
+
+.btn-hero {
+  background: linear-gradient(to right, #e0f2dc, #c7e8b6);
+  border-radius: 50px;
+  padding: 22px 40px;
+  color: white;
+  text-align: center;
+  color: #2D6A4F;
+  font-weight: 700;
+  font-size: 1rem;
+  line-height: 1.4;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  transition: all 0.3 ease;
+}
+
+.btn-hero:hover {
+  background-color: rgb(4, 87, 4);
+  cursor: pointer;
+}
+
+/* INVEStMENT TYPE SECTION*/
+.investment-section {
+  padding: 60px 80px;
+  background-color: #ffffff;
+}
+
+.investment-section h2 {
+  color: #1b4332;
+  font-size: 1.6rem;
+  font-weight: 800;
+  margin-bottom: 30px;
+}
+
+/*CARD CONTAINER*/
+.container-card {
+  display: flex;
+  flex-direction: row;
+  gap: 25px;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+}
+
+.card {
+  width: 200px;
+  height: 280px;
+  border: 1px solid #E0E0E0;
+  border-radius: 10px;
+  padding: 20px;
+  background-color: #fdfdfd;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+  transition: all 0.3s ease;
+  text-align: center;
+}
+
+.card img {
+  width: 100%;
+  height: 100px;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+.card h3 {
+  font-size: 1.1rem;
+  color: #2d6a4f;
+  margin-bottom: 10px;
+  font-weight: 800;
+}
+
+.card p {
+  margin-top: 8px;
+  color: black;
+  color: #4b4b4b;
+  line-height: 1.5;
+}
+
+/*CHART SECTION*/
+.chart-section {
+  background-color: #f0f7ed;
+  padding: 60px 0;
+  text-align: center;
+}
+
+.chart-section h2 {
+  color: #1b4332;
+  font-size: 1.8rem;
+  margin-bottom: 40px;
+  font-weight: 700;
+}
+
+.chart-container {
+    width: 100%;
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+footer {
+  background-color: #c7e8b6;
+  color: #2D6A4F;
+  padding: 30px 80px;
+  text-align: center;
+  font-size: 14px;
+  font-weight: 500;
+  border-top: 1px solid #d7e7d1;
+}
+
+footer p {
+  margin: 0;
+} 
