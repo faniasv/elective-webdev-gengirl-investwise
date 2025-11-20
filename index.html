@@ -1,94 +1,365 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>InvestWise</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css">
-
-  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/papaparse@5.5.3/papaparse.min.js"></script>
-  <script src="script.js"></script>
-</head>
-<body>
-  <header>
-    <div>
-      <img src="/asset/logo.png">
-      <h2>InvestWise</h2>
-    </div>
-    <nav>
-      <ul>
-        <li><a href="#">Home</a></li>
-        <li><a href="#">Recommendation</a></li>
-        <li><a href="#">Article</a></li>
-        <li><div class="profile">
-            <img src="/asset/account.png" alt="Profile">
-        </div></li>
-      </ul>
-    </nav>
-  </header>
-
-  <main>
-    <section id="hero-section">
-      <div>
-        <h1>Welcome to InvestWise</h1>
-        <p>The future of decision support for financial investment.</p>
-        <p>Use the SMART Method to invest with confidences.</p>
-      </div>
-      <div>
-        <div class="btn-hero">
-          Get To Know SMART Method
-        </div>
-      </div>
-    </section>
-
-    <section class="investment-section">
-      <h2>Type of Investment</h2>
-
-      <div class="container-card">
-        <div class="card">
-          <img src="/asset/investment.jpg" alt="Stocks">
-          <h3>Stocks</h3>
-          <p>Invest in company shares for potential growth and dividends.</p>
-        </div>
-
-        <div class="card">
-          <img src="/asset/investment.jpg" alt="Bonds">
-          <h3>Bonds</h3>
-          <p>Earn stable returns through low-risk goverment or corporate bonds.</p>
-        </div>
-        <div class="card">
-          <img src="/asset/investment.jpg" alt="Real Estate">
-          <h3>Real Estaste</h3>
-          <p>Build long-term health wealth with property investments.</p>
-        </div>
-        <div class="card">
-          <img src="/asset/investment.jpg" alt="Mutual Funds">
-          <h3>Mutual Funds</h3>
-          <p>Diversify your portfolio with expert-manager funds.</p>
-        </div>
-        <div class="card">
-          <img src="/asset/investment.jpg" alt="Cryptocurrency">
-          <h3>Cryptocurrency</h3>
-          <p>Explore digital asssets for high-risk, high-reward opportunities.</p>
-        </div>
-      </div>
-    </section>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>InvestWise - Smart Financial Decisions</title>
     
-    <section class="chart-section">
-      <h2>My Portfolio Distribution</h2>
-      <div class="chart-container">
-        <canvas id="myCanvas"></canvas>
-      </div>
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="style.css">
+
+    <!-- Chart Data -->
+    <script src="script.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.0/papaparse.min.js"></script>
+    
+    <!-- Custom Config for Colors/Fonts -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Outfit', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: {
+                            dark: '#020617',    /* Very Dark Slate/Green tint */
+                            card: '#0f172a',    /* Slate 900 */
+                            primary: '#10B981', /* Emerald 500 */
+                            secondary: '#059669', /* Emerald 600 */
+                            accent: '#84CC16',  /* Lime 500 */
+                            glow: '#34D399',    /* Emerald 400 */
+                        }
+                    },
+                    animation: {
+                        'float': 'float 6s ease-in-out infinite',
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-20px)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-brand-dark text-slate-200 font-sans antialiased overflow-x-hidden">
+
+    <!-- 
+      STICKY HEADER 
+    -->
+    <header id="navbar" class="fixed w-full top-0 z-50 transition-all duration-300 glass-nav">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <!-- Logo -->
+                <div class="flex items-center gap-3 group cursor-pointer">
+                    <div class="w-10 h-10 bg-gradient-to-br from-brand-primary to-brand-secondary rounded-xl flex items-center justify-center text-white shadow-lg shadow-emerald-500/20 group-hover:shadow-emerald-500/40 transition-all">
+                        <i class="fa-solid fa-leaf text-xl"></i>
+                    </div>
+                    <h1 class="text-2xl font-bold tracking-tight text-white">Invest<span class="text-brand-primary">Wise</span></h1>
+                </div>
+
+                <!-- Desktop Navigation -->
+                <nav class="hidden md:flex items-center space-x-8">
+                    <a href="#" class="text-sm font-medium text-slate-300 hover:text-brand-primary transition-colors relative group">
+                        Home
+                        <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-brand-primary transition-all group-hover:w-full"></span>
+                    </a>
+                    <a href="#recommendations" class="text-sm font-medium text-slate-300 hover:text-brand-primary transition-colors relative group">
+                        Recommendations
+                        <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-brand-primary transition-all group-hover:w-full"></span>
+                    </a>
+                    <a href="#portfolio" class="text-sm font-medium text-slate-300 hover:text-brand-primary transition-colors relative group">
+                        Portfolio
+                        <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-brand-primary transition-all group-hover:w-full"></span>
+                    </a>
+                    <a href="#" class="text-sm font-medium text-slate-300 hover:text-brand-primary transition-colors relative group">
+                        Articles
+                        <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-brand-primary transition-all group-hover:w-full"></span>
+                    </a>
+                </nav>
+
+                <!-- User Profile / Action -->
+                <div class="hidden md:flex items-center gap-4">
+                    <button class="text-slate-300 hover:text-brand-primary transition-colors">
+                        <i class="fa-regular fa-bell text-xl"></i>
+                    </button>
+                    <div class="w-10 h-10 rounded-full bg-slate-800 border-2 border-slate-700 flex items-center justify-center overflow-hidden cursor-pointer hover:border-brand-primary transition-colors">
+                        <i class="fa-solid fa-user text-slate-300"></i>
+                    </div>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <div class="md:hidden flex items-center">
+                    <button id="mobile-menu-btn" class="text-slate-300 hover:text-white p-2">
+                        <i class="fa-solid fa-bars text-2xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Mobile Menu Dropdown -->
+        <div id="mobile-menu" class="hidden md:hidden glass-nav border-t border-slate-800">
+            <div class="px-4 pt-2 pb-4 space-y-1">
+                <a href="#" class="block px-3 py-2 rounded-md text-base font-medium text-brand-primary bg-slate-800">Home</a>
+                <a href="#recommendations" class="block px-3 py-2 rounded-md text-base font-medium text-slate-300 hover:text-white hover:bg-slate-800">Recommendations</a>
+                <a href="#portfolio" class="block px-3 py-2 rounded-md text-base font-medium text-slate-300 hover:text-white hover:bg-slate-800">Portfolio</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- 
+      HERO SECTION 
+    -->
+    <section class="relative pt-32 pb-20 lg:pt-48 lg:pb-32 hero-gradient overflow-hidden">
+        <!-- Green Glow Blobs -->
+        <div class="absolute top-20 left-0 w-72 h-72 bg-emerald-600/20 rounded-full blur-3xl -z-10 animate-pulse"></div>
+        <div class="absolute bottom-0 right-0 w-96 h-96 bg-lime-600/10 rounded-full blur-3xl -z-10"></div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                
+                <!-- Text Content -->
+                <div class="text-center lg:text-left space-y-8">
+                    <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-sm font-semibold mb-4">
+                        <span class="relative flex h-2 w-2">
+                          <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                          <span class="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+                        </span>
+                        New: AI-Powered SMART Analysis
+                    </div>
+                    
+                    <h1 class="text-5xl lg:text-7xl font-bold text-white leading-tight tracking-tight">
+                        Invest with <br>
+                        <span class="text-transparent bg-clip-text bg-gradient-to-r from-brand-primary to-brand-accent">Confidence</span>
+                    </h1>
+                    
+                    <p class="text-xl text-slate-400 max-w-2xl mx-auto lg:mx-0">
+                        The future of decision support for financial investment. Use the <strong class="text-brand-primary">SMART Method</strong> to build wealth without the guesswork.
+                    
+                    <div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start pt-4">
+                        <button class="px-8 py-4 bg-brand-primary hover:bg-brand-secondary text-white rounded-xl font-semibold shadow-lg shadow-emerald-500/25 transition-all hover:-translate-y-1 flex items-center justify-center gap-2">
+                            Get to know SMART
+                            <i class="fa-solid fa-arrow-right"></i>
+                        </button>
+                        <button class="px-8 py-4 bg-slate-800 hover:bg-slate-700 border border-slate-700 text-white rounded-xl font-semibold transition-all hover:-translate-y-1">
+                            View Market Trends
+                        </button>
+                    </div>
+
+                    <!-- Stats -->
+                    <div class="pt-8 border-t border-slate-800/50 flex gap-8 justify-center lg:justify-start">
+                        <div>
+                            <p class="text-3xl font-bold text-white">12K+</p>
+                            <p class="text-slate-500 text-sm">Active Investor</p>
+                        </div>
+                        <div>
+                            <p class="text-3xl font-bold text-white">98%</p>
+                            <p class="text-slate-500 text-sm">Accuracy Rate</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Hero Visual/Illustration -->
+                <div class="relative lg:h-[600px] flex items-center justify-center animate-float hidden lg:flex">
+                    <!-- Card Stack -->
+                    <div class="relative w-80 h-[450px] bg-gradient-to-b from-slate-800 to-slate-900 rounded-3xl border border-slate-700 shadow-2xl transform rotate-6 z-10 p-6">
+                        <!-- Mock Chart UI -->
+                        <div class="flex justify-between items-center mb-6">
+                            <div class="text-sm text-slate-400">Total Balance</div>
+                            <div class="text-brand-accent font-mono text-xs flex items-center gap-1">
+                                <i class="fa-solid fa-caret-up"></i> +12.5%
+                            </div>
+                        </div>
+                        <div class="text-3xl font-bold text-white mb-8">$24,593.00</div>
+                        
+                        <!-- Green Bars -->
+                        <div class="h-32 flex items-end gap-2 mb-6">
+                            <div class="w-1/5 bg-emerald-500/20 h-[40%] rounded-t-sm"></div>
+                            <div class="w-1/5 bg-emerald-500/40 h-[60%] rounded-t-sm"></div>
+                            <div class="w-1/5 bg-emerald-500/60 h-[30%] rounded-t-sm"></div>
+                            <div class="w-1/5 bg-emerald-500/80 h-[80%] rounded-t-sm"></div>
+                            <div class="w-1/5 bg-brand-primary h-[65%] rounded-t-sm relative">
+                                <div class="absolute -top-8 left-1/2 -translate-x-1/2 bg-white text-brand-dark text-xs font-bold px-2 py-1 rounded">Top</div>
+                            </div>
+                        </div>
+                        <div class="space-y-3">
+                            <div class="h-10 bg-slate-700/50 rounded-lg w-full flex items-center px-3 gap-3">
+                                <div class="w-6 h-6 rounded bg-emerald-500/20 flex items-center justify-center text-emerald-500 text-xs"><i class="fa-solid fa-solar-panel"></i></div>
+                                <div class="h-2 w-20 bg-slate-600 rounded"></div>
+                            </div>
+                            <div class="h-10 bg-slate-700/30 rounded-lg w-full flex items-center px-3 gap-3">
+                                <div class="w-6 h-6 rounded bg-lime-500/20 flex items-center justify-center text-lime-500 text-xs"><i class="fa-solid fa-wind"></i></div>
+                                <div class="h-2 w-16 bg-slate-600 rounded"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Background Card -->
+                    <div class="absolute top-10 w-80 h-[450px] bg-emerald-900/20 rounded-3xl border border-emerald-500/10 transform -rotate-6 z-0"></div>
+                </div>
+            </div>
+        </div>
     </section>
-  </main>
-  <footer>
-    <h3>Empowering smarter financial decisions through the SMART Method</h3>
-    <p>Copyright @2025 by valeris-void</p>
-    <p>Web Development Series GenerationGirl Tangerang</p>
-  </footer>
+
+    <!-- 
+      RECOMMENDATIONS 
+    -->
+    <section id="recommendations" class="py-20 relative bg-brand-dark">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-brand-primary font-semibold tracking-wide uppercase text-sm mb-2">Investment Opportunities</h2>
+                <h3 class="text-3xl md:text-4xl font-bold text-white">Tailored Your Goals</h3>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                
+                <!-- Card 1: Stocks -->
+                <div class="group relative glass-card rounded-2xl p-8 hover:bg-slate-800/80 transition-all duration-300 hover:-translate-y-2 hover:shadow-xl hover:shadow-emerald-500/10">
+                    <div class="w-14 h-14 bg-emerald-500/10 rounded-2xl flex items-center justify-center mb-6 group-hover:bg-emerald-500 group-hover:text-white transition-colors text-emerald-500">
+                        <i class="fa-solid fa-tree text-2xl"></i>
+                    </div>
+                    <h4 class="text-xl font-bold text-white mb-3">Stocks</h4>
+                    <p class="text-slate-400 text-sm leading-relaxed mb-6">
+                        Invest in company shares for potential growth and dividends. High liquidity and historical performance.
+                    </p>
+                    <a href="#" class="inline-flex items-center text-brand-primary text-sm font-semibold hover:text-emerald-400 transition-colors">
+                        Learn More <i class="fa-solid fa-chevron-right text-xs ml-2"></i>
+                    </a>
+                </div>
+
+                <!-- Card 2: Bonds -->
+                <div class="group relative glass-card rounded-2xl p-8 hover:bg-slate-800/80 transition-all duration-300 hover:-translate-y-2 hover:shadow-xl hover:shadow-teal-500/10">
+                    <div class="w-14 h-14 bg-teal-500/10 rounded-2xl flex items-center justify-center mb-6 group-hover:bg-teal-500 group-hover:text-white transition-colors text-teal-500">
+                        <i class="fa-solid fa-hand-holding-dollar text-2xl"></i>
+                    </div>
+                    <h4 class="text-xl font-bold text-white mb-3">Bonds</h4>
+                    <p class="text-slate-400 text-sm leading-relaxed mb-6">
+                        Earn stable returns through low-risk government or corporate bonds. Perfect for capital preservation.
+                    </p>
+                    <a href="#" class="inline-flex items-center text-teal-500 text-sm font-semibold hover:text-teal-400 transition-colors">
+                        Learn More <i class="fa-solid fa-chevron-right text-xs ml-2"></i>
+                    </a>
+                </div>
+
+                <!-- Card 3: Real Estates -->
+                <div class="group relative glass-card rounded-2xl p-8 hover:bg-slate-800/80 transition-all duration-300 hover:-translate-y-2 hover:shadow-xl hover:shadow-lime-500/10">
+                    <div class="w-14 h-14 bg-lime-500/10 rounded-2xl flex items-center justify-center mb-6 group-hover:bg-lime-500 group-hover:text-white transition-colors text-lime-500">
+                        <i class="fa-solid fa-layer-group text-2xl"></i>
+                    </div>
+                    <h4 class="text-xl font-bold text-white mb-3">Real Estates</h4>
+                    <p class="text-slate-400 text-sm leading-relaxed mb-6">
+                        Earn stable returns through low-risk government or corporate bonds. Perfect for capital preservation.
+                    </p>
+                    <a href="#" class="inline-flex items-center text-lime-500 text-sm font-semibold hover:text-lime-400 transition-colors">
+                        Learn More <i class="fa-solid fa-chevron-right text-xs ml-2"></i>
+                    </a>
+                </div>
+
+                <!-- Card 4: Mutual Bonds -->
+                <div class="group relative glass-card rounded-2xl p-8 hover:bg-slate-800/80 transition-all duration-300 hover:-translate-y-2 hover:shadow-xl hover:shadow-cyan-500/10">
+                    <div class="w-14 h-14 bg-cyan-500/10 rounded-2xl flex items-center justify-center mb-6 group-hover:bg-cyan-500 group-hover:text-white transition-colors text-cyan-500">
+                        <i class="fa-solid fa-building-columns text-2xl"></i>
+                    </div>
+                    <h4 class="text-xl font-bold text-white mb-3">Mutual Bonds</h4>
+                    <p class="text-slate-400 text-sm leading-relaxed mb-6">
+                        Diversify your portfolio with expert-managed funds. Reduce risk through broad exposure.
+                    </p>
+                    <a href="#" class="inline-flex items-center text-cyan-500 text-sm font-semibold hover:text-cyan-400 transition-colors">
+                        Learn More <i class="fa-solid fa-chevron-right text-xs ml-2"></i>
+                    </a>
+                </div>
+
+                <!-- Card 5: Cryptocurrency -->
+                <div class="group relative glass-card rounded-2xl p-8 hover:bg-slate-800/80 transition-all duration-300 hover:-translate-y-2 hover:shadow-xl hover:shadow-green-600/10">
+                    <div class="w-14 h-14 bg-green-600/10 rounded-2xl flex items-center justify-center mb-6 group-hover:bg-green-600 group-hover:text-white transition-colors text-green-600">
+                        <i class="fa-solid fa-wheat-awn text-2xl"></i>
+                    </div>
+                    <h4 class="text-xl font-bold text-white mb-3">Cryptocurrency</h4>
+                    <p class="text-slate-400 text-sm leading-relaxed mb-6">
+                        Invest in the future of food. Vertical farming, hydroponics, and sustainable food chains.
+                    </p>
+                    <a href="#" class="inline-flex items-center text-green-600 text-sm font-semibold hover:text-green-400 transition-colors">
+                        Learn More <i class="fa-solid fa-chevron-right text-xs ml-2"></i>
+                    </a>
+                </div>
+
+                 <!-- Card 6: Commodities -->
+                 <div class="group relative glass-card rounded-2xl p-8 hover:bg-slate-800/80 transition-all duration-300 hover:-translate-y-2 hover:shadow-xl hover:shadow-yellow-500/10">
+                    <div class="w-14 h-14 bg-yellow-500/10 rounded-2xl flex items-center justify-center mb-6 group-hover:bg-yellow-500 group-hover:text-white transition-colors text-yellow-500">
+                        <i class="fa-solid fa-cloud-arrow-up text-2xl"></i>
+                    </div>
+                    <h4 class="text-xl font-bold text-white mb-3">Commodities</h4>
+                    <p class="text-slate-400 text-sm leading-relaxed mb-6">
+                        Gold, silver, and oil. Safe haven assets that often perform well when markets are volatile.
+                    </p>
+                    <a href="#" class="inline-flex items-center text-yellow-500 text-sm font-semibold hover:text-yellow-400 transition-colors">
+                        Learn More <i class="fa-solid fa-chevron-right text-xs ml-2"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 
+      PORTFOLIO SECTION 
+    -->
+    <section id="portfolio" class="py-20 bg-slate-900 border-t border-slate-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <!-- Header & Controls -->
+          <div class="flex flex-col md:flex-row justify-between items-end mb-8 gap-4">
+            <div>
+              <h2 class="text-3xl font-bold text-white mb-2">Portfolio Performance</h2>
+              <p class="text-slate-400 text-sm">
+                Real-time asset allocation analysis based on SMART Method.
+              </p>
+            </div>
+          </div>
+          <!-- Full Width Chart -->
+          <!-- h-[400px] ensures it's tall enough. w-full makes it stretch. -->
+          <div class="w-full h-[400px] md:h-[500px] bg-slate-900/50 rounded-2xl p-4 border border-slate-700/50 relative mb-10">
+            <canvas id="myCanvas"></canvas>
+          </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="bg-black py-12 border-t border-slate-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center gap-6">
+            <div class="text-center md:text-left">
+                <div class="flex items-center gap-2 justify-center md:justify-start mb-2">
+                     <div class="w-6 h-6 bg-brand-primary rounded flex items-center justify-center text-black text-xs">
+                        <i class="fa-solid fa-leaf"></i>
+                     </div>
+                     <span class="text-lg font-bold text-white">InvestWise</span>
+                </div>
+                <p class="text-slate-500 text-sm">Empowering sustainable financial growth.</p>
+            </div>
+            <div class="text-slate-600 text-sm text-center md:text-right">
+                <p>&copy; 2025 Valeris-Void. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Logic for Mobile Menu -->
+    <script>
+        const btn = document.getElementById('mobile-menu-btn');
+        const menu = document.getElementById('mobile-menu');
+
+        btn.addEventListener('click', () => {
+            menu.classList.toggle('hidden');
+        });
+    </script>
 </body>
 </html>
