@@ -1,4 +1,4 @@
-# My Project Title
+# InvestWise
 InvestWise is a modern, responsive web application designed to help users make smarter financial decisions using the SMART Method. It features a clean dashboard interface, educational resources on investment types, and a dynamic portfolio visualization tool.
 
 # 🚀 Features
